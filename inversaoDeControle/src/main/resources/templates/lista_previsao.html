@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Hello Spring Boot</title>
+<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}"
+	rel="stylesheet" />
+</head>
+<body>
+	<div class="panel panel-default" style="margin: 10px">
+		<div class="panel-heading">
+			<h1 class="panel-title">Previsão</h1>
+		</div>
+		<div class="panel-body">
+			<form class="form-inline" method="POST" th:object="${previsao}"
+				th:action="@{/previsoes}" style="margin: 20px 0">
+				<div class="container">
+				<div class="row">
+					  <div class="col-12">
+					   <input type="text" class="form-control" placeholder="Dia da Semana" th:field="*{diaSemana}" /> 
+					   <input type="text" class="form-control" placeholder="Temperatura Minima" th:field="*{tempMin}" /> 
+					   <input type="text" class="form-control" placeholder="Temperatura Maxima" th:field="*{tempMax}" />
+					   <input type="text" class="form-control" placeholder="Umidade relativa do ar" th:field="*{umiRelativa}" /> 
+					  </div>
+					</div>
+					<div class="row">
+					 <div class="col-12">
+					   <input type="text" class="form-control" placeholder="Descrição do clima" th:field="*{descricao}" />
+					    <input type="text" class="form-control" placeholder="Data / Hora" th:field="*{dataHora}" />
+					    <input type="text" class="form-control" placeholder="Latitude" th:field="*{latitude}" /> 
+				        <input type="text" class="form-control" placeholder="Longitude" th:field="*{longitude}" />
+					  </div>  
+					</div>
+					<div class="row">
+					  <div class="col-6">
+					   <button type="submit" class="btn btn-primary">Adicionar</button>
+					  </div>
+					</div>
+				</div>	
+			</form>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Dia da semana</th>
+						<th>Temperatura Minima</th>
+						<th>Temperatura Maxima</th>
+						<th>Umidade relativa</th>
+						<th>Descrição</th>
+						<th>Data e Hora</th>
+						<th>Latitude</th>
+						<th>Longitude</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="previsao : ${previsoes}">
+						<td th:text="${previsao.diaSemana}"></td>
+						<td th:text="${previsao.tempMin}"></td>
+						<td th:text="${previsao.tempMax}"></td>
+						<td th:text="${previsao.umiRelativa}"></td>
+						<td th:text="${previsao.descricao}"></td>
+						<td th:text="${previsao.dataHora}"></td>
+						<td th:text="${previsao.latitude}"></td>
+						<td th:text="${previsao.longitude}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
